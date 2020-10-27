@@ -1,12 +1,27 @@
+
+<button mat-button [matMenuTriggerFor]="menu">Menu</button>
+
 <h1> Raad het getal! </h1>  
 
 <h3>Raad een getal tussen 1 en 100.</h3>
 
-<input #gok />
+<input placeholder="0" #gok />
+
 <button *ngIf="aantalBeurten>0"(click)="checkGok(gok.value)">check</button>
 
     <p *ngIf="verschil<0">Gok lager.</p>
     <p *ngIf="verschil>0">Gok hoger.</p>
     <p *ngIf="verschil===0" >Je hebt juist gegokt!</p>
-    <p *ngIf="aantalBeurten>0">Je hebt nog {{ aantalBeurten }} kansen.</p>  
-<button *ngIf="aantalBeurten===0"(click)="refresh()">Opnieuw?</button>
+    <p *ngIf="aantalBeurten>0">Je hebt nog {{ aantalBeurten }} kansen.</p> 
+
+<button mat-button *ngIf="aantalBeurten===0"(click)="refresh()">Opnieuw?</button>
+
+<mat-menu #menu="matMenu">
+    <button mat-menu-item (click)="refresh()">Opnieuw starten?</button>
+  </mat-menu>
+
+<mat-list dense>
+    <mat-list-item *ngFor="let gok of gokken; let i = index">
+      gok {{ i+1 }} = {{ gok }}
+    </mat-list-item>
+</mat-list>
